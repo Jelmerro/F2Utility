@@ -1,0 +1,79 @@
+package f2utility;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Base64;
+import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+
+/**
+ * Main class of the application creates all panes
+ *
+ * @author Jelmerro
+ */
+public class F2Utility extends Application {
+
+    public static Stage stage;
+
+    /**
+     * Application starts and decorates stage
+     *
+     * @param s Stage
+     */
+    @Override
+    public void start(Stage s) {
+        stage = s;
+        BorderPane pane = new BorderPane();
+        Scene scene = new Scene(pane);
+        //MenuBar top
+        MenuBar menubar = MenuBar.getInstance();
+        pane.setTop(menubar);
+        //Files center
+        FileList fileList = FileList.getInstance();
+        pane.setCenter(fileList);
+        //Tools bottom
+        ToolsBox toolPane = ToolsBox.getInstance();
+        pane.setBottom(toolPane);
+        //Stage
+        stage.setTitle("F2Utility");
+        stage.setScene(scene);
+        //Sets the size to a decent portion of the screen
+        stage.setMinWidth(935);
+        stage.setMinHeight(500);
+        stage.setWidth(935);
+        stage.setHeight(600);
+        //Adds icon from base64 and show the frame
+        String imageString = "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";
+        stage.getIcons().add(Base64ToImage(imageString));
+        stage.show();
+    }
+
+    /**
+     * Converts a base64 String to an Image
+     *
+     * @param base64 String
+     * @return image Image
+     */
+    public Image Base64ToImage(String base64) {
+        try {
+            byte[] imageBytes = Base64.getDecoder().decode(base64);
+            Image image = SwingFXUtils.toFXImage(ImageIO.read(new ByteArrayInputStream(imageBytes)), null);
+            return image;
+        } catch (IOException ex) {
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @param args String[]
+     */
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+}

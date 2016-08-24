@@ -1,0 +1,8 @@
+//Netbeans
+build/
+build.xml
+dist/
+nbproject/
+manifest.mf
+//Windows
+Thumbs.db
