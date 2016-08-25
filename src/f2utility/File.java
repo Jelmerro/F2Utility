@@ -18,6 +18,8 @@ public class File extends java.io.File {
      */
     public File(String pathname) {
         super(pathname);
+        //The new name is initially equal to the current name
+        //setNewName is used to change this after any configs
         newName = getName();
 
     }
@@ -63,7 +65,7 @@ public class File extends java.io.File {
     }
 
     /**
-     * Setter for newName
+     * Setter for newName, used when looping over the tools
      *
      * @param name String
      */

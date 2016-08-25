@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 /**
+ * Cut the first and/or last bunch of characters
  *
  * @author Jelmerro
  */
@@ -16,6 +17,9 @@ public class RemoveStartEnd extends VBox implements Tool {
     private final TextField start;
     private final TextField end;
 
+    /**
+     * Constructor for the RemoveStartEnd Tool
+     */
     public RemoveStartEnd() {
         super(5);
         Deactivate();
@@ -49,6 +53,7 @@ public class RemoveStartEnd extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
+        //Removes the first number of characters if start is a valid integer
         try {
             int startNum = Integer.parseInt(start.getText());
             if (startNum > 0) {
@@ -56,6 +61,7 @@ public class RemoveStartEnd extends VBox implements Tool {
             }
         } catch (Exception ex) {
         }
+        //Removes the last number of characters if end is a valid integer
         try {
             int startNum = Integer.parseInt(end.getText());
             if (startNum > 0) {
@@ -68,6 +74,8 @@ public class RemoveStartEnd extends VBox implements Tool {
 
     @Override
     public void checkActive() {
+        //If either of them is a valid integer above 0, activate
+        //Else deactivate
         try {
             int startNum = Integer.parseInt(start.getText());
             if (startNum > 0) {

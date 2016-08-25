@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 /**
+ * Tool for adding a string: before, into or after the current name
  *
  * @author Jelmerro
  */
@@ -18,6 +19,9 @@ public class Add extends GridPane implements Tool {
     private final TextField insert;
     private final TextField pos;
 
+    /**
+     * Constructor for the Add Tool
+     */
     public Add() {
         super();
         Deactivate();
@@ -73,12 +77,16 @@ public class Add extends GridPane implements Tool {
 
     @Override
     public String processName(String name) {
+        //Adds the prefix if provided
         if (!prefix.getText().isEmpty()) {
             name = prefix.getText() + name;
         }
+        //Adds the suffix if provided
         if (!suffix.getText().isEmpty()) {
             name = name + suffix.getText();
         }
+        //If a valid integer position is given, add the insert if provided
+        //Insert goes after the current name if the position is too high
         if (!insert.getText().isEmpty() && !pos.getText().isEmpty()) {
             try {
                 int position = Integer.parseInt(pos.getText());
@@ -99,6 +107,10 @@ public class Add extends GridPane implements Tool {
 
     @Override
     public void checkActive() {
+        //If a prefix is given, activate
+        //If a suffix is given, activate
+        //If a valid integer position is given and the insert text isn't empty, activate
+        //Else deactivate
         if (!prefix.getText().isEmpty()) {
             Activate();
         } else if (!suffix.getText().isEmpty()) {

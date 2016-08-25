@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
+ * Misc tools: modify the case or trim it
  *
  * @author Jelmerro
  */
@@ -20,6 +21,9 @@ public class Misc extends VBox implements Tool {
     private final ComboBox mode;
     private final CheckBox trim;
 
+    /**
+     * Constructor for the Misc Tool
+     */
     public Misc() {
         super(5);
         Deactivate();
@@ -58,11 +62,13 @@ public class Misc extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
+        //Applies the selected case if any
         if (mode.getSelectionModel().getSelectedItem().equals("Lowercase")) {
             name = name.toLowerCase();
         } else if (mode.getSelectionModel().getSelectedItem().equals("Uppercase")) {
             name = name.toUpperCase();
         } else if (mode.getSelectionModel().getSelectedItem().equals("Sentence")) {
+            //Capitalize the first alphabetic character found and break
             try {
                 for (int i = 0; i < name.length(); i++) {
                     if (Character.isAlphabetic(name.charAt(i))) {
@@ -73,6 +79,9 @@ public class Misc extends VBox implements Tool {
             } catch (Exception ex) {
             }
         } else if (mode.getSelectionModel().getSelectedItem().equals("Title")) {
+            //Capitalize every alphabetic letter that follows a nonalphabetic letter
+            //Single quote ' being the exception to that
+            //Also capitalizes the very first character (if needed)
             try {
                 String nameTemp = "";
                 boolean capital = true;
@@ -91,6 +100,7 @@ public class Misc extends VBox implements Tool {
             } catch (Exception ex) {
             }
         }
+        //Trims if selected
         if (trim.isSelected()) {
             name = name.trim();
         }
@@ -99,6 +109,8 @@ public class Misc extends VBox implements Tool {
 
     @Override
     public void checkActive() {
+        //If a case mode is selected and/or the trim is checked, activate
+        //Else deactivate
         if (mode.getSelectionModel().getSelectedItem().equals("Same case")) {
             if (trim.isSelected()) {
                 Activate();
