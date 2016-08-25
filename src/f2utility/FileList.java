@@ -111,8 +111,8 @@ public class FileList extends TableView<File> {
                         @Override
                         protected void updateItem(Object t, boolean bln) {
                             super.updateItem(t, bln);
-                            //Try to change the color if the file named was changed
-                            //Exceptions can happen when item is still loading
+                            //Try to change the color if the file name was changed
+                            //Exceptions can happen when an item is still loading
                             //These will simply be ignored and updated later
                             try {
                                 int currentIndex = indexProperty().getValue() < 0 ? 0 : indexProperty().getValue();
@@ -218,10 +218,11 @@ public class FileList extends TableView<File> {
                 }
             }
         }
+        ToolBox.getInstance().updateNewNames();
     }
 
     /**
-     * Removes all the currently selected files from the list and clear the selection
+     * Removes all the currently selected files from the list and clears the selection
      */
     public void removeSelectedFiles() {
         fileList.getItems().removeAll(fileList.getSelectionModel().getSelectedItems());

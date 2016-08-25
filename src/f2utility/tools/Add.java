@@ -1,6 +1,6 @@
 package f2utility.tools;
 
-import f2utility.ToolsBox;
+import f2utility.ToolBox;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -34,7 +34,7 @@ public class Add extends GridPane implements Tool {
         setMargin(prefix, new Insets(5, 5, 5, 5));
         prefix.setPromptText("Prefix");
         prefix.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         prefix.setMinWidth(100);
@@ -45,7 +45,7 @@ public class Add extends GridPane implements Tool {
         setMargin(suffix, new Insets(0, 5, 5, 5));
         suffix.setPromptText("Suffix");
         suffix.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         suffix.setMinWidth(100);
@@ -56,18 +56,18 @@ public class Add extends GridPane implements Tool {
         setMargin(insert, new Insets(5, 5, 5, 0));
         insert.setPromptText("Insert");
         insert.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         insert.setMinWidth(100);
         insert.setMaxWidth(100);
         add(insert, 1, 1);
-        //Suffix field
+        //Position field
         pos = new TextField();
         setMargin(pos, new Insets(0, 5, 5, 0));
         pos.setPromptText("Position");
         pos.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         pos.setMinWidth(100);

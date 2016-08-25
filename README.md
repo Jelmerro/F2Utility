@@ -1,6 +1,7 @@
 ![f2utility](https://cloud.githubusercontent.com/assets/1696674/17949675/d8cb5cf6-6a56-11e6-8d6f-ef7f9de98220.png)
 # F2Utility
-An easy and effective batch file rename tool
+An easy and effective batch file rename tool.
+Rename multiple files at once using a wide range of tools.
 
 # Features
 * Replace text from your file names

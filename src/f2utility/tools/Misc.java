@@ -1,6 +1,6 @@
 package f2utility.tools;
 
-import f2utility.ToolsBox;
+import f2utility.ToolBox;
 import java.util.ArrayList;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,7 +42,7 @@ public class Misc extends VBox implements Tool {
         mode.getSelectionModel().select(0);
         setMargin(mode, new Insets(0, 5, 0, 5));
         mode.valueProperty().addListener((ObservableValue ov, Object t, Object t1) -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         mode.setMinWidth(100);
@@ -52,7 +52,7 @@ public class Misc extends VBox implements Tool {
         trim = new CheckBox("Trim");
         setMargin(trim, new Insets(0, 5, 5, 5));
         trim.setOnAction(e -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         trim.setMinWidth(100);
