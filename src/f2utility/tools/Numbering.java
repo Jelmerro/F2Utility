@@ -1,6 +1,6 @@
 package f2utility.tools;
 
-import f2utility.ToolsBox;
+import f2utility.ToolBox;
 import java.util.ArrayList;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -41,7 +41,7 @@ public class Numbering extends VBox implements Tool {
         mode.getSelectionModel().select(0);
         setMargin(mode, new Insets(0, 5, 0, 5));
         mode.valueProperty().addListener((ObservableValue ov, Object t, Object t1) -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         mode.setMinWidth(100);
@@ -52,7 +52,7 @@ public class Numbering extends VBox implements Tool {
         setMargin(pad, new Insets(0, 5, 5, 5));
         pad.setPromptText("Padding");
         pad.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         pad.setMinWidth(100);

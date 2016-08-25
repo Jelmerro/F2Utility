@@ -11,7 +11,7 @@ public interface Tool {
     public String deactivated = "-fx-border-color: #bbb;-fx-border-width: 2px;-fx-border-radius: 3px;";
 
     /**
-     * Rename the provided string using the tools capabilities
+     * Renames the provided string using the tool it's capabilities
      *
      * @param name String
      * @return newName String

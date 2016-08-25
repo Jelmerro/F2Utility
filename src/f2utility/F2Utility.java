@@ -37,8 +37,8 @@ public class F2Utility extends Application {
         FileList fileList = FileList.getInstance();
         pane.setCenter(fileList);
         //Tools bottom
-        ToolsBox toolPane = ToolsBox.getInstance();
-        pane.setBottom(toolPane);
+        ToolBox toolBox = ToolBox.getInstance();
+        pane.setBottom(toolBox);
         //Stage
         stage.setTitle("F2Utility");
         stage.setScene(scene);

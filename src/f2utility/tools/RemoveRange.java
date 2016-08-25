@@ -1,6 +1,6 @@
 package f2utility.tools;
 
-import f2utility.ToolsBox;
+import f2utility.ToolBox;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,7 +32,7 @@ public class RemoveRange extends VBox implements Tool {
         setMargin(start, new Insets(0, 5, 0, 5));
         start.setPromptText("From");
         start.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         start.setMinWidth(100);
@@ -43,7 +43,7 @@ public class RemoveRange extends VBox implements Tool {
         setMargin(end, new Insets(0, 5, 5, 5));
         end.setPromptText("To");
         end.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         end.setMinWidth(100);

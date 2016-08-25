@@ -1,6 +1,6 @@
 package f2utility.tools;
 
-import f2utility.ToolsBox;
+import f2utility.ToolBox;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,7 +32,7 @@ public class Regex extends VBox implements Tool {
         setMargin(match, new Insets(0, 5, 0, 5));
         match.setPromptText("Match");
         match.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         match.setMinWidth(100);
@@ -43,7 +43,7 @@ public class Regex extends VBox implements Tool {
         setMargin(replace, new Insets(0, 5, 5, 5));
         replace.setPromptText("Replacement");
         replace.setOnKeyReleased(t -> {
-            ToolsBox.getInstance().updateNewNames();
+            ToolBox.getInstance().updateNewNames();
             checkActive();
         });
         replace.setMinWidth(100);
@@ -53,7 +53,7 @@ public class Regex extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
-        //Replace the input string with the output string
+        //Replaces the match string with the replace string
         //Uses regex for the match if provided
         //Exception catching is done to prevent any regex problems
         try {
@@ -65,7 +65,7 @@ public class Regex extends VBox implements Tool {
 
     @Override
     public void checkActive() {
-        //Tries the replace the match with the replacement
+        //Tries to replace the match with the replacement
         //On errors, deactivate
         //On succes with effect, activate
         //On succes without any effect, deactivate

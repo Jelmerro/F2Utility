@@ -27,19 +27,19 @@ import javafx.scene.paint.Color;
  *
  * @author Jelmerro
  */
-public class ToolsBox extends HBox {
+public class ToolBox extends HBox {
 
-    private static ToolsBox toolsBox;
+    private static ToolBox toolBox;
     private static ArrayList<Node> tools;
 
-    public static ToolsBox getInstance() {
-        if (toolsBox == null) {
-            //ToolsPane
-            toolsBox = new ToolsBox(5);
-            toolsBox.setMinHeight(100);
-            toolsBox.setMaxHeight(100);
-            toolsBox.setBackground(new Background(new BackgroundFill(Color.web("#EEE"), CornerRadii.EMPTY, Insets.EMPTY)));
-            toolsBox.setPadding(new Insets(5));
+    public static ToolBox getInstance() {
+        if (toolBox == null) {
+            //ToolBox
+            toolBox = new ToolBox(5);
+            toolBox.setMinHeight(100);
+            toolBox.setMaxHeight(100);
+            toolBox.setBackground(new Background(new BackgroundFill(Color.web("#EEE"), CornerRadii.EMPTY, Insets.EMPTY)));
+            toolBox.setPadding(new Insets(5));
             //Tools
             tools = new ArrayList<>();
             tools.add(new Regex());
@@ -104,10 +104,10 @@ public class ToolsBox extends HBox {
             tools.add(buttonBox);
             //Add all the tools
             for (Node tool : tools) {
-                toolsBox.getChildren().add(tool);
+                toolBox.getChildren().add(tool);
             }
         }
-        return toolsBox;
+        return toolBox;
     }
 
     /**
@@ -152,7 +152,7 @@ public class ToolsBox extends HBox {
         FileList.getInstance().getColumns().get(0).setVisible(true);
     }
 
-    private ToolsBox(double d) {
+    private ToolBox(double d) {
         super(d);
     }
 }
