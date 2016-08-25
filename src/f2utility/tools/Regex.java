@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 /**
+ * Replace certain strings or use regex to do so
  *
  * @author Jelmerro
  */
@@ -16,6 +17,9 @@ public class Regex extends VBox implements Tool {
     private final TextField match;
     private final TextField replace;
 
+    /**
+     * Constructor for the Regex Tool
+     */
     public Regex() {
         super(5);
         Deactivate();
@@ -49,6 +53,9 @@ public class Regex extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
+        //Replace the input string with the output string
+        //Uses regex for the match if provided
+        //Exception catching is done to prevent any regex problems
         try {
             return name.replaceAll(match.getText(), replace.getText());
         } catch (Exception ex) {
@@ -58,6 +65,10 @@ public class Regex extends VBox implements Tool {
 
     @Override
     public void checkActive() {
+        //Tries the replace the match with the replacement
+        //On errors, deactivate
+        //On succes with effect, activate
+        //On succes without any effect, deactivate
         try {
             "".replaceAll(match.getText(), replace.getText());
             if (match.getText().equals(replace.getText())) {

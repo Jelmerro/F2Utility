@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 /**
+ * Remove a range of characters
  *
  * @author Jelmerro
  */
@@ -16,6 +17,9 @@ public class RemoveRange extends VBox implements Tool {
     private final TextField start;
     private final TextField end;
 
+    /**
+     * Constructor for the RemoveRange Tool
+     */
     public RemoveRange() {
         super(5);
         Deactivate();
@@ -49,6 +53,8 @@ public class RemoveRange extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
+        //Removes the provided range if valid
+        //Also checks for too high end integer and works around it
         try {
             int startNum = Integer.parseInt(start.getText());
             int endNum = Integer.parseInt(end.getText());
@@ -68,6 +74,9 @@ public class RemoveRange extends VBox implements Tool {
 
     @Override
     public void checkActive() {
+        //If a valid start and end integer are provided
+        //And the end integer is higher than or equal to the start integer, activate
+        //Else deactivate
         try {
             int startNum = Integer.parseInt(start.getText());
             int endNum = Integer.parseInt(end.getText());

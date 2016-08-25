@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
 /**
+ * MenuBar containing all the actions regarding the fileList
  *
  * @author Jelmerro
  */

@@ -23,22 +23,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
+ * Horizontal Box containing all the tools for renaming
  *
  * @author Jelmerro
  */
 public class ToolsBox extends HBox {
 
-    private static ToolsBox toolsPane;
+    private static ToolsBox toolsBox;
     private static ArrayList<Node> tools;
 
     public static ToolsBox getInstance() {
-        if (toolsPane == null) {
+        if (toolsBox == null) {
             //ToolsPane
-            toolsPane = new ToolsBox(5);
-            toolsPane.setMinHeight(100);
-            toolsPane.setMaxHeight(100);
-            toolsPane.setBackground(new Background(new BackgroundFill(Color.web("#EEE"), CornerRadii.EMPTY, Insets.EMPTY)));
-            toolsPane.setPadding(new Insets(5));
+            toolsBox = new ToolsBox(5);
+            toolsBox.setMinHeight(100);
+            toolsBox.setMaxHeight(100);
+            toolsBox.setBackground(new Background(new BackgroundFill(Color.web("#EEE"), CornerRadii.EMPTY, Insets.EMPTY)));
+            toolsBox.setPadding(new Insets(5));
             //Tools
             tools = new ArrayList<>();
             tools.add(new Regex());
@@ -53,7 +54,9 @@ public class ToolsBox extends HBox {
             Button renameButton = new Button("Rename");
             renameButton.setMinSize(90, 42);
             renameButton.setOnAction(e -> {
+                //Results of the rename process are checked here
                 HashMap<File, Boolean> results = getInstance().rename();
+                //And a list is made for all the items that failed
                 String failedItems = "";
                 for (Entry<File, Boolean> entry : results.entrySet()) {
                     if (!entry.getValue()) {
@@ -66,6 +69,8 @@ public class ToolsBox extends HBox {
                         }
                     }
                 }
+                //No failed items means the renaming was a success
+                //Otherwise a the list of failed items is shown
                 if (failedItems.isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Rename success");
@@ -99,12 +104,17 @@ public class ToolsBox extends HBox {
             tools.add(buttonBox);
             //Add all the tools
             for (Node tool : tools) {
-                toolsPane.getChildren().add(tool);
+                toolsBox.getChildren().add(tool);
             }
         }
-        return toolsPane;
+        return toolsBox;
     }
 
+    /**
+     * Renames all the items and returns the list with results
+     *
+     * @return results HashMap<File, Boolean>
+     */
     public HashMap<File, Boolean> rename() {
         HashMap<File, Boolean> map = new HashMap<>();
         for (File file : FileList.getInstance().getItems()) {
@@ -122,6 +132,9 @@ public class ToolsBox extends HBox {
         return map;
     }
 
+    /**
+     * Loops over the tools and updates the list with the new name
+     */
     public void updateNewNames() {
         for (File file : FileList.getInstance().getItems()) {
             String name = file.getName();

@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 
 /**
+ * Alert for the about section of the program, includes link to github page
  *
  * @author Jelmerro
  */

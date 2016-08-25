@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import static javafx.scene.layout.VBox.setMargin;
 
 /**
+ * Tool for numbering the items with optional padding
  *
  * @author Jelmerro
  */
@@ -21,6 +22,9 @@ public class Numbering extends VBox implements Tool {
     private final ComboBox mode;
     private final TextField pad;
 
+    /**
+     * Constructor of the Numbering Tool
+     */
     public Numbering() {
         super(5);
         Deactivate();
@@ -58,11 +62,15 @@ public class Numbering extends VBox implements Tool {
 
     @Override
     public String processName(String name) {
+        //#TODO
         return name;
     }
 
     @Override
     public void checkActive() {
+        //If any numbering mode is selected
+        //And the padding is either empty or a valid integer, activate
+        //Else deactivate
         if (mode.getSelectionModel().getSelectedItem().equals("None")) {
             Deactivate();
         } else {
