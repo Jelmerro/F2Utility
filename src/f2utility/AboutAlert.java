@@ -27,7 +27,7 @@ class AboutAlert extends Alert {
         getDialogPane().setGraphic(icon);
         //Content
         setTitle("About");
-        setHeaderText("F2Utility 0.1.0");
+        setHeaderText("F2Utility 0.3.0");
         setContentText("An easy and effective batch file rename tool\nCreated by Jelmerro\nMIT License");
         //Github button
         Button githubButton = (Button) getDialogPane().lookupButton(ButtonType.OK);

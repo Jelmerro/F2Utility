@@ -31,6 +31,7 @@ public class ToolBox extends HBox {
 
     private static ToolBox toolBox;
     private static ArrayList<Node> tools;
+    private static Numbering numberingTool;
 
     public static ToolBox getInstance() {
         if (toolBox == null) {
@@ -46,7 +47,8 @@ public class ToolBox extends HBox {
             tools.add(new RemoveRange());
             tools.add(new RemoveStartEnd());
             tools.add(new Add());
-            tools.add(new Numbering());
+            numberingTool = new Numbering();
+            tools.add(numberingTool);
             tools.add(new Misc());
             //ButtonBox
             VBox buttonBox = new VBox(6);
@@ -136,6 +138,7 @@ public class ToolBox extends HBox {
      * Loops over the tools and updates the list with the new name
      */
     public void updateNewNames() {
+        numberingTool.resetCount();
         for (File file : FileList.getInstance().getItems()) {
             String name = file.getName();
             for (Node n : tools) {
