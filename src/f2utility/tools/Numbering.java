@@ -21,6 +21,7 @@ public class Numbering extends VBox implements Tool {
     private final Label label;
     private final ComboBox mode;
     private final TextField pad;
+    private int count;
 
     /**
      * Constructor of the Numbering Tool
@@ -28,6 +29,7 @@ public class Numbering extends VBox implements Tool {
     public Numbering() {
         super(5);
         Deactivate();
+        count = 1;
         //Label
         label = new Label("Numbering");
         setMargin(label, new Insets(5, 5, 0, 5));
@@ -60,9 +62,36 @@ public class Numbering extends VBox implements Tool {
         getChildren().add(pad);
     }
 
+    /**
+     * Resets the counter for numbering the items
+     */
+    public void resetCount() {
+        count = 1;
+    }
+
     @Override
     public String processName(String name) {
-        //#TODO
+        //If any mode is selected it should be numbered
+        //But only if the padding is either valid or empty
+        try {
+            int padding = Integer.parseInt(pad.getText());
+            if (padding > 0) {
+                if (mode.getSelectionModel().getSelectedItem().equals("Prefix")) {
+                    name = String.format("%0" + padding + "d", count) + name;
+                } else if (mode.getSelectionModel().getSelectedItem().equals("Suffix")) {
+                    name = name + String.format("%0" + padding + "d", count);
+                }
+            }
+        } catch (Exception ex) {
+            if (pad.getText().isEmpty()) {
+                if (mode.getSelectionModel().getSelectedItem().equals("Prefix")) {
+                    name = count + name;
+                } else if (mode.getSelectionModel().getSelectedItem().equals("Suffix")) {
+                    name = name + count;
+                }
+            }
+        }
+        count++;
         return name;
     }
 
@@ -75,7 +104,7 @@ public class Numbering extends VBox implements Tool {
             Deactivate();
         } else {
             try {
-                if (Integer.parseInt(pad.getText()) >= 0) {
+                if (Integer.parseInt(pad.getText()) > 0) {
                     Activate();
                 } else {
                     Deactivate();
