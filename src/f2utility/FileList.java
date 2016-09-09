@@ -30,6 +30,11 @@ public class FileList extends TableView<File> {
 
     private static FileList fileList;
 
+    /**
+     * Returns the only allowed instance for the list of files
+     *
+     * @return fileList FileList
+     */
     public static FileList getInstance() {
         if (fileList == null) {
             //FileList
@@ -101,7 +106,7 @@ public class FileList extends TableView<File> {
             lastModified.setPrefWidth(300);
             lastModified.setVisible(false);
             lastModified.setCellValueFactory(new PropertyValueFactory<>("lastModified"));
-            //Custom color for changed names
+            //Custom style (green and bold) for changed names
             newName.setCellFactory(new Callback<TableColumn<File, String>, TableCell<File, String>>() {
 
                 @Override

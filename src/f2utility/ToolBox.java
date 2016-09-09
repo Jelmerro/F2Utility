@@ -33,6 +33,11 @@ public class ToolBox extends HBox {
     private static ArrayList<Node> tools;
     private static Numbering numberingTool;
 
+    /**
+     * Returns the only allowed instance of the ToolBox
+     *
+     * @return toolBox ToolBox
+     */
     public static ToolBox getInstance() {
         if (toolBox == null) {
             //ToolBox

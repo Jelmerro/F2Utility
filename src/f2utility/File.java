@@ -14,7 +14,7 @@ public class File extends java.io.File {
     /**
      * Constructor for a new file
      *
-     * @param pathname
+     * @param pathname String
      */
     public File(String pathname) {
         super(pathname);
@@ -39,7 +39,7 @@ public class File extends java.io.File {
     }
 
     /**
-     * Returns the extension
+     * Returns the extension of the file (if any)
      *
      * @return ext String
      */
