@@ -7,8 +7,8 @@ package f2utility.tools;
  */
 public interface Tool {
 
-    public String activated = "-fx-border-color: #ADA;-fx-border-width: 2px;-fx-border-radius: 3px;";
-    public String deactivated = "-fx-border-color: #bbb;-fx-border-width: 2px;-fx-border-radius: 3px;";
+    public String ACTIVATED = "-fx-border-color: #ADA;-fx-border-width: 2px;-fx-border-radius: 3px;";
+    public String DEACTIVATED = "-fx-border-color: #bbb;-fx-border-width: 2px;-fx-border-radius: 3px;";
 
     /**
      * Renames the provided string using the tool it's capabilities

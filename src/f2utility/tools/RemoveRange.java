@@ -92,12 +92,12 @@ public class RemoveRange extends VBox implements Tool {
 
     @Override
     public void Activate() {
-        setStyle(activated);
+        setStyle(ACTIVATED);
     }
 
     @Override
     public void Deactivate() {
-        setStyle(deactivated);
+        setStyle(DEACTIVATED);
     }
 
     @Override

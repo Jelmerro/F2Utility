@@ -15,6 +15,9 @@ import javafx.stage.Modality;
  */
 class AboutAlert extends Alert {
 
+    /**
+     * Constructor of the AboutAlert
+     */
     public AboutAlert() {
         super(AlertType.INFORMATION);
         initModality(Modality.APPLICATION_MODAL);
@@ -27,12 +30,14 @@ class AboutAlert extends Alert {
         getDialogPane().setGraphic(icon);
         //Content
         setTitle("About");
-        setHeaderText("F2Utility 0.3.0");
+        setHeaderText("F2Utility 1.0.0");
         setContentText("An easy and effective batch file rename tool\nCreated by Jelmerro\nMIT License");
         //Github button
         Button githubButton = (Button) getDialogPane().lookupButton(ButtonType.OK);
         githubButton.setText("Github");
         githubButton.setOnAction(e -> {
+            //Try opening the default desktop browser
+            //Else show the url in an alert
             try {
                 Desktop.getDesktop().browse(new URI("https://github.com/Jelmerro/F2Utility"));
             } catch (Exception ex) {

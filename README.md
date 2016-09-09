@@ -14,6 +14,7 @@ Rename multiple files at once using a wide range of tools.
 * Change the case of the names in many ways
 * Trim the file names
 * Lists all the files which could not be renamed (if any)
+* Re-order a selection of files using hotkeys
 * Easily determine which tools are active by looking at the border color
 * Or simply drag and drop some files and folders to get started
 
