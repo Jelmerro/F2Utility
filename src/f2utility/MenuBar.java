@@ -69,6 +69,7 @@ public class MenuBar extends javafx.scene.control.MenuBar {
                 for (File file : selectedCells) {
                     FileList.getInstance().getSelectionModel().select(file);
                 }
+                ToolBox.getInstance().updateNewNames();
             });
             moveUpItem.setAccelerator(KeyCombination.valueOf("["));
             //Move down item
@@ -86,6 +87,7 @@ public class MenuBar extends javafx.scene.control.MenuBar {
                 for (File file : selectedCells) {
                     FileList.getInstance().getSelectionModel().select(file);
                 }
+                ToolBox.getInstance().updateNewNames();
             });
             moveDownItem.setAccelerator(KeyCombination.valueOf("]"));
             //Delete item
