@@ -78,19 +78,22 @@ public class ToolBox extends HBox {
                 }
                 //No failed items means the renaming was a success
                 //Otherwise a the list of failed items is shown
-                if (failedItems.isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Rename success");
-                    alert.setHeaderText("Succesfully renamed all files");
-                    alert.setContentText(results.size() + " files and folders were renamed with succes");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Rename error");
-                    alert.setHeaderText("Some files were not renamed correctly");
-                    TextArea list = new TextArea(failedItems);
-                    alert.getDialogPane().setContent(list);
-                    alert.showAndWait();
+                //Only show a message if there were files in the list
+                if (results.size() > 0) {
+                    if (failedItems.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Rename success");
+                        alert.setHeaderText("Succesfully renamed all files");
+                        alert.setContentText(results.size() + " files and folders were renamed with success");
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Rename error");
+                        alert.setHeaderText("Some files were not renamed correctly");
+                        TextArea list = new TextArea(failedItems);
+                        alert.getDialogPane().setContent(list);
+                        alert.showAndWait();
+                    }
                 }
             });
             buttonBox.getChildren().add(renameButton);
@@ -118,23 +121,25 @@ public class ToolBox extends HBox {
     }
 
     /**
-     * Renames all the items and returns the list with results
+     * Renames all the items and returns the list with results, skips unchanged ones
      *
      * @return results HashMap<File, Boolean>
      */
     public HashMap<File, Boolean> rename() {
         HashMap<File, Boolean> map = new HashMap<>();
         for (File file : FileList.getInstance().getItems()) {
-            boolean success = file.rename();
-            if (success) {
-                String ext = file.getExt();
-                if (ext.equals("-")) {
-                    FileList.getInstance().getItems().set(FileList.getInstance().getItems().indexOf(file), new File(file.getParent() + File.separator + file.getNewName()));
-                } else {
-                    FileList.getInstance().getItems().set(FileList.getInstance().getItems().indexOf(file), new File(file.getParent() + File.separator + file.getNewName() + "." + ext));
+            if (!file.getName().equals(file.getNewName())) {
+                boolean success = file.rename();
+                if (success) {
+                    String ext = file.getExt();
+                    if (ext.equals("-")) {
+                        FileList.getInstance().getItems().set(FileList.getInstance().getItems().indexOf(file), new File(file.getParent() + File.separator + file.getNewName()));
+                    } else {
+                        FileList.getInstance().getItems().set(FileList.getInstance().getItems().indexOf(file), new File(file.getParent() + File.separator + file.getNewName() + "." + ext));
+                    }
                 }
+                map.put(file, success);
             }
-            map.put(file, success);
         }
         return map;
     }

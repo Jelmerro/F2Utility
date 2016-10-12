@@ -188,6 +188,7 @@ public class FileList extends TableView<File> {
         } catch (NullPointerException ex) {
 
         }
+        ToolBox.getInstance().updateNewNames();
     }
 
     /**
@@ -202,6 +203,7 @@ public class FileList extends TableView<File> {
         } catch (NullPointerException ex) {
 
         }
+        ToolBox.getInstance().updateNewNames();
     }
 
     /**
@@ -232,6 +234,7 @@ public class FileList extends TableView<File> {
     public void removeSelectedFiles() {
         fileList.getItems().removeAll(fileList.getSelectionModel().getSelectedItems());
         fileList.getSelectionModel().clearSelection();
+        ToolBox.getInstance().updateNewNames();
     }
 
     private FileList() {

@@ -30,7 +30,7 @@ class AboutAlert extends Alert {
         getDialogPane().setGraphic(icon);
         //Content
         setTitle("About");
-        setHeaderText("F2Utility 1.0.0");
+        setHeaderText("F2Utility 1.0.1");
         setContentText("An easy and effective batch file rename tool\nCreated by Jelmerro\nMIT License");
         //Github button
         Button githubButton = (Button) getDialogPane().lookupButton(ButtonType.OK);
@@ -38,11 +38,13 @@ class AboutAlert extends Alert {
         githubButton.setOnAction(e -> {
             //Try opening the default desktop browser
             //Else show the url in an alert
-            try {
-                Desktop.getDesktop().browse(new URI("https://github.com/Jelmerro/F2Utility"));
-            } catch (Exception ex) {
-                new Alert(Alert.AlertType.NONE, "URL: https://github.com/Jelmerro/F2Utility", ButtonType.CLOSE).showAndWait();
-            }
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/Jelmerro/F2Utility"));
+                } catch (Exception ex) {
+                    new Alert(Alert.AlertType.NONE, "URL: https://github.com/Jelmerro/F2Utility", ButtonType.CLOSE).showAndWait();
+                }
+            }).start();
             e.consume();
         });
         setOnCloseRequest(e -> {
